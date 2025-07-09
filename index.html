@@ -1,317 +1,1068 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Miss Trader - دوزبانه</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آموزش فارکس | Forex Training - مهناز خورسند</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* تنظیمات پایه */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'IranSans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<!-- فونت‌ها -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
-<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+        body {
+            background-color: #0a0a1a;
+            color: #fff;
+            line-height: 1.8;
+            transition: all 0.3s;
+        }
 
-<!-- آیکون‌ها -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        /* دکمه تغییر زبان */
+        .lang-switcher {
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            z-index: 1001;
+            background: rgba(0, 20, 40, 0.7);
+            border: 1px solid #00f7ff;
+            border-radius: 5px;
+            padding: 8px 15px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+            display: flex;
+            align-items: center;
+        }
 
-<style>
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-    font-family: 'Vazirmatn', 'Poppins', sans-serif;
-  }
-  body {
-    background:
-      linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
-      url('https://images.unsplash.com/photo-1516822003754-cca485356ecb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
-    background-size: cover;
-    color: #eee;
-    min-height: 100vh;
-    scroll-behavior: smooth;
-    transition: direction 0.3s ease;
-  }
-  header {
-    position: fixed;
-    width: 100%;
-    background: rgba(0,0,0,0.8);
-    top: 0; left: 0; z-index: 10000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.7);
-  }
-  nav {
-    max-width: 1200px;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-  }
-  .logo {
-    font-weight: 700;
-    font-size: 1.8rem;
-    color: #00d8ff;
-    letter-spacing: 3px;
-    cursor: pointer;
-  }
-  .menu {
-    display: flex;
-    gap: 25px;
-  }
-  .menu a {
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 8px 12px;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
-    color: #eee;
-    text-decoration: none;
-  }
-  .menu a:hover, .menu a.active {
-    background: #00d8ff;
-    color: #000;
-  }
-  .lang-switch {
-    cursor: pointer;
-    color: #00d8ff;
-    font-weight: 700;
-    border: 2px solid #00d8ff;
-    border-radius: 6px;
-    padding: 6px 12px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  .lang-switch:hover {
-    background-color: #00d8ff;
-    color: #000;
-  }
-  section {
-    padding: 140px 20px 60px;
-    max-width: 1000px;
-    margin: 0 auto 60px auto;
-    background: rgba(0,0,0,0.5);
-    border-radius: 15px;
-    box-shadow: 0 0 25px #00d8ffaa;
-  }
-  h2 {
-    font-weight: 700;
-    font-size: 2.4rem;
-    margin-bottom: 15px;
-    border-bottom: 3px solid #00d8ff;
-    display: inline-block;
-    padding-bottom: 8px;
-  }
-  h4 {
-    color: #00d8ff;
-    margin-bottom: 20px;
-    font-weight: 600;
-  }
-  p {
-    font-weight: 300;
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: #ccc;
-    margin-bottom: 25px;
-  }
-  .services {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 20px;
-  }
-  .service-box {
-    background: rgba(0,216,255,0.15);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 20px rgba(0,216,255,0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    color: #eee;
-  }
-  .service-box:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 0 35px #00d8ff;
-  }
-  .service-box h3 {
-    margin-bottom: 10px;
-    color: #00d8ff;
-  }
-  .socials {
-    text-align: center;
-    margin: 40px 0 20px;
-  }
-  .socials a {
-    font-size: 1.7rem;
-    margin: 0 15px;
-    color: #00d8ff;
-    transition: color 0.3s ease;
-  }
-  .socials a:hover {
-    color: #00b8e6;
-  }
-  .bio {
-    margin-top: 40px;
-    background: rgba(0,0,0,0.7);
-    border-radius: 15px;
-    padding: 30px 20px;
-    color: #ccc;
-    font-style: italic;
-    box-shadow: 0 0 20px rgba(0,216,255,0.4);
-  }
-  @media(max-width:768px) {
-    nav {
-      flex-direction: column;
-      gap: 10px;
-    }
-    .menu {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-  }
-</style>
+        .lang-switcher i {
+            margin-left: 8px;
+            color: #00f7ff;
+        }
+
+        /* هدر و لوگو */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #00172c 0%, #000a15 100%);
+            border-bottom: 2px solid #00f7ff;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+        }
+
+        .logo {
+            max-width: 250px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 10px rgba(0, 247, 255, 0.7));
+        }
+
+        .motivation-box {
+            background: rgba(0, 30, 60, 0.5);
+            border: 1px solid #00f7ff;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+        }
+
+        .motivation-text {
+            color: #b8f8ff;
+            font-size: 1rem;
+            line-height: 1.8;
+            text-shadow: 0 0 5px rgba(0, 247, 255, 0.5);
+        }
+
+        /* دکمه ثبت نام */
+        .register-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #0084ff 0%, #00f7ff 100%);
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.7);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .register-btn:hover {
+            box-shadow: 0 0 25px rgba(0, 247, 255, 0.9);
+        }
+
+        .register-btn i {
+            margin-left: 8px;
+        }
+
+        /* فرم ثبت نام */
+        .register-form-container {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: rgba(0, 15, 30, 0.98);
+            padding: 30px;
+            z-index: 1002;
+            transition: all 0.3s;
+            border-left: 2px solid #00f7ff;
+            overflow-y: auto;
+        }
+
+        .register-form-container.active {
+            right: 0;
+        }
+
+        .close-form {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #00f7ff;
+        }
+
+        .register-form {
+            margin-top: 30px;
+        }
+
+        .register-form h3 {
+            color: #00f7ff;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+        }
+
+        .register-form input, 
+        .register-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: rgba(0, 30, 60, 0.7);
+            border: 1px solid #00f7ff;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .register-form input::placeholder {
+            color: #aaa;
+        }
+
+        .optional-question {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .optional-question i {
+            position: absolute;
+            left: 10px;
+            top: 12px;
+            color: #00f7ff;
+        }
+
+        .optional-question input {
+            padding-left: 35px !important;
+        }
+
+        .register-form button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, #0084ff 0%, #00f7ff 100%);
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+        }
+
+        .register-form button:hover {
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.7);
+        }
+
+        .register-form button i {
+            margin-left: 8px;
+        }
+
+        #successMessage {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #0f0;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+            color: #b8f8ff;
+        }
+
+        /* منوی همبرگر */
+        .hamburger-menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        .menu-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            cursor: pointer;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #00f7ff;
+            transition: all 0.3s;
+            box-shadow: 0 0 5px rgba(0, 247, 255, 0.7);
+        }
+
+        #menu-toggle:checked + .menu-btn span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        #menu-toggle:checked + .menu-btn span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #menu-toggle:checked + .menu-btn span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -8px);
+        }
+
+        .menu-box {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 250px;
+            height: 100vh;
+            background: rgba(0, 10, 20, 0.95);
+            border-right: 2px solid #00f7ff;
+            padding: 80px 20px 20px;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 132, 255, 0.5);
+        }
+
+        #menu-toggle:checked ~ .menu-box {
+            left: 0;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #00f7ff;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        .menu-box li {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .menu-box a {
+            color: #b8f8ff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            border-radius: 5px;
+        }
+
+        .menu-box a:hover {
+            color: #00f7ff;
+            background: rgba(0, 132, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+        }
+
+        .menu-icon {
+            margin-left: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* بخش‌های محتوایی */
+        .content-section {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            padding: 80px 5% 40px;
+            background: rgba(0, 10, 20, 0.95);
+            z-index: 999;
+            transition: all 0.3s;
+            overflow-y: auto;
+        }
+
+        .content-section.active {
+            right: 0;
+        }
+
+        .content-section h2 {
+            color: #00f7ff;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            border-bottom: 1px solid #00f7ff;
+            padding-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        .content-section h2 i {
+            margin-left: 10px;
+        }
+
+        .content-section p, 
+        .content-section li {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .service-item, 
+        .faq-item, 
+        .testimonial {
+            background: rgba(0, 20, 40, 0.5);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.1);
+        }
+
+        .service-item h3, 
+        .faq-item h3, 
+        .testimonial h3 {
+            color: #00f7ff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-item h3 i, 
+        .faq-item h3 i {
+            margin-left: 8px;
+            font-size: 0.9em;
+        }
+
+        .contact-methods p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .contact-methods i {
+            margin-left: 10px;
+            width: 20px;
+            color: #00f7ff;
+        }
+
+        /* چت آنلاین */
+        .chat-icon {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0084ff 0%, #00f7ff 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.7);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .chat-icon:hover {
+            box-shadow: 0 0 30px rgba(0, 247, 255, 0.9);
+        }
+
+        .chat-icon i {
+            font-size: 1.5rem;
+            color: #000;
+        }
+
+        .chat-box {
+            position: fixed;
+            bottom: 100px;
+            left: -350px;
+            width: 300px;
+            height: 400px;
+            background: rgba(0, 15, 30, 0.95);
+            border: 1px solid #00f7ff;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(0, 247, 255, 0.5);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .chat-box.active {
+            left: 30px;
+        }
+
+        .chat-header {
+            padding: 10px 15px;
+            background: linear-gradient(90deg, #0084ff 0%, #00f7ff 100%);
+            color: #000;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-chat {
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            max-width: 80%;
+        }
+
+        .user {
+            background: rgba(0, 132, 255, 0.3);
+            margin-left: auto;
+            border-top-right-radius: 0;
+        }
+
+        .bot {
+            background: rgba(0, 20, 40, 0.7);
+            border: 1px solid #00f7ff;
+            margin-right: auto;
+            border-top-left-radius: 0;
+        }
+
+        .quick-questions {
+            padding: 10px 15px;
+            border-top: 1px solid #00f7ff;
+            border-bottom: 1px solid #00f7ff;
+        }
+
+        .quick-questions p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #b8f8ff;
+        }
+
+        .quick-question {
+            display: block;
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            background: rgba(0, 132, 255, 0.2);
+            border: 1px solid #00f7ff;
+            border-radius: 5px;
+            color: #b8f8ff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: right;
+        }
+
+        .quick-question:hover {
+            background: rgba(0, 132, 255, 0.4);
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            background: rgba(0, 30, 60, 0.7);
+            border: 1px solid #00f7ff;
+            border-radius: 5px 0 0 5px;
+            color: #fff;
+        }
+
+        .send-btn {
+            padding: 0 15px;
+            background: linear-gradient(90deg, #0084ff 0%, #00f7ff 100%);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            color: #000;
+        }
+
+        /* رسپانسیو */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 20px;
+            }
+            
+            .logo {
+                max-width: 200px;
+            }
+            
+            .motivation-box {
+                padding: 15px;
+            }
+            
+            .hamburger-menu {
+                left: 20px;
+                top: 15px;
+            }
+            
+            .lang-switcher {
+                top: 60px;
+                left: 20px;
+                padding: 6px 10px;
+            }
+            
+            .register-btn {
+                top: 15px;
+                right: 15px;
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .register-form-container {
+                width: 100%;
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            .menu-box {
+                width: 80%;
+            }
+            
+            .back-btn {
+                display: block;
+            }
+            
+            .content-section {
+                padding: 70px 20px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- صفحه اول با لوگو و متن انگیزشی -->
+    <section class="hero-section" id="heroSection">
+        <img src="logo.png" alt="آموزش فارکس - مهناز خورسند" class="logo">
+        <div class="motivation-box">
+            <p class="motivation-text">
+                در دنیای پر از نوسان و فرصت‌های بی‌پایان بازارهای مالی، موفقیت تنها از آن کسانی است که جرئت می‌کنند قدم اول را بردارند، پشتکار دارند و همواره در مسیر یادگیری و رشد هستند. ترید کردن، هنر تحلیل و تصمیم‌گیری در لحظه‌های حساس است که می‌تواند زندگی شما را متحول کند.
 
-<header>
-  <nav>
-    <div class="logo">Miss Trader</div>
-    <div class="menu">
-      <a href="#" class="active" data-key="home">خانه</a>
-      <a href="#" data-key="freeCourses">آموزش رایگان</a>
-      <a href="#" data-key="paidCourses">آموزش‌های ما</a>
-      <a href="#" data-key="weeklyAnalysis">تحلیل هفتگی</a>
-      <a href="#" data-key="blog">وبلاگ</a>
-      <a href="#" data-key="about">درباره ما</a>
-    </div>
-    <div>
-      <button class="lang-switch" id="lang-toggle">English</button>
-    </div>
-  </nav>
-</header>
+                ما در کنار تحلیل تکنیکال و فاندامنتال، از قدرت استرولوژی مالی نیز بهره می‌بریم؛ دانشی که با بررسی موقعیت سیارات و تأثیرات آن‌ها بر احساسات جمعی بازار، به ما دیدگاهی عمیق‌تر و زمان‌بندی دقیق‌تری برای ورود و خروج می‌دهد. این ترکیب هوشمندانه از علم و هنر، می‌تواند شما را چند قدم جلوتر از بازار نگه دارد.
 
-<section>
-  <h2 id="title">توانمندسازی مسیر ترید شما</h2>
-  <h4 id="subtitle">بنیانگذار M&amp;W Concept</h4>
-  <p id="services-title">خدمات ما</p>
+                امروز زمان آن است که ترس‌ها را کنار بگذارید و به سمت آینده‌ای روشن‌تر حرکت کنید.
+                با ما، آموزش ترید اسکلپی و روندی را به‌همراه نگاهی متفاوت از جنس کیهان تجربه می‌کنید.
+            </p>
+        </div>
+    </section>
 
-  <div class="services">
-    <div class="service-box" onclick="alert('رفتن به دوره‌های رایگان')">
-      <h3 id="service1-title">دوره‌های رایگان</h3>
-      <p id="service1-desc">آموزش ترید در فارکس با ویدئوهای کامل و جامع</p>
+    <!-- دکمه تغییر زبان -->
+    <div class="lang-switcher" id="langSwitcher">
+        <span class="lang-text">English</span>
+        <i class="fas fa-globe"></i>
     </div>
 
-    <div class="service-box" onclick="alert('رفتن به تحلیل هفتگی')">
-      <h3 id="service2-title">تحلیل هفتگی</h3>
-      <p id="service2-desc">تحلیل بازار و کندل‌ها به صورت دقیق و حرفه‌ای</p>
+    <!-- دکمه ثبت نام -->
+    <button class="register-btn" id="registerBtn">
+        <i class="fas fa-user-plus"></i>
+        ثبت نام
+    </button>
+
+    <!-- فرم ثبت نام -->
+    <div class="register-form-container" id="registerFormContainer">
+        <i class="fas fa-times close-form" id="closeForm"></i>
+        <div class="register-form">
+            <h3>فرم ثبت نام در دوره‌ها</h3>
+            <form id="registrationForm">
+                <input type="text" placeholder="نام و نام خانوادگی" required>
+                <input type="tel" placeholder="شماره تماس" required>
+                
+                <select required>
+                    <option value="">سطح آشنایی با فارکس</option>
+                    <option value="beginner">مبتدی</option>
+                    <option value="intermediate">آشنا</option>
+                    <option value="semi-pro">نیمه حرفه‌ای</option>
+                </select>
+                
+                <select required>
+                    <option value="">دوره مورد نظر</option>
+                    <option value="free">دوره رایگان</option>
+                    <option value="pro">دوره تخصصی</option>
+                </select>
+                
+                <div class="optional-question">
+                    <i class="fas fa-question-circle"></i>
+                    <input type="text" placeholder="سوال شما (اختیاری)">
+                </div>
+                
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i>
+                    ارسال اطلاعات
+                </button>
+            </form>
+            <div id="successMessage" class="hidden">
+                <i class="fas fa-check-circle"></i>
+                ثبت نام شما با موفقیت انجام شد. همکاران ما تا ۲۴ ساعت آینده با شما تماس خواهند گرفت.
+            </div>
+        </div>
     </div>
 
-    <div class="service-box" onclick="alert('رفتن به آموزش‌های ما')">
-      <h3 id="service3-title">آموزش‌های ما</h3>
-      <p id="service3-desc">دوره‌های تخصصی پیشرفته با پشتیبانی و فایل‌های اختصاصی</p>
+    <!-- منوی همبرگر -->
+    <nav class="hamburger-menu">
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        
+        <ul class="menu-box">
+            <i class="fas fa-arrow-right back-btn" id="menuBackBtn"></i>
+            <li>
+                <a href="services.html" target="_blank" id="services-link">
+                    <i class="fas fa-graduation-cap menu-icon"></i>
+                    خدمات آموزشی
+                </a>
+            </li>
+            <li>
+                <a href="#" id="about-link">
+                    <i class="fas fa-user-tie menu-icon"></i>
+                    درباره ما
+                </a>
+            </li>
+            <li>
+                <a href="#" id="faq-link">
+                    <i class="fas fa-question-circle menu-icon"></i>
+                    سوالات متداول
+                </a>
+            </li>
+            <li>
+                <a href="#" id="testimonials-link">
+                    <i class="fas fa-comment-dots menu-icon"></i>
+                    نظرات هنرجویان
+                </a>
+            </li>
+            <li>
+                <a href="#" id="contact-link">
+                    <i class="fas fa-phone-alt menu-icon"></i>
+                    تماس با ما
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- بخش‌های محتوایی -->
+    <div id="content-sections">
+        <!-- درباره ما -->
+        <section id="about-section" class="content-section">
+            <h2><i class="fas fa-user-tie"></i> درباره من</h2>
+            <div class="about-content">
+                <p>من مهناز خورسند هستم، متولد ۱۳۶۷، دارای مدرک فوق‌لیسانس مهندسی تکنولوژی معماری و با سابقه‌ای چندساله در مسیر پرچالش اما جذاب بازارهای مالی.</p>
+                <p>از سال ۱۳۹۸ با دنیای ترید آشنا شدم. مثل خیلی‌ها، مسیرم پر از سردرگمی، ضرر، تلاش و یادگیری بود. اما هیچ‌وقت متوقف نشدم. حالا، بعد از سال‌ها تجربه، آزمون و خطا، و یادگیری مداوم، خوشحالم که می‌تونم بگم بیش از سه ساله به سود مستمر در بازار فارکس رسیدم.</p>
+                <p>اینجا رو راه‌اندازی کردم تا آموزش‌هایی ارائه بدم که صرفاً تئوری نباشن، بلکه بر پایه تجربه واقعی و قابل استفاده در معاملات واقعی باشن. آموزش‌هایی ساده، کاربردی و بدون وابستگی به اندیکاتورها و روش‌های پیچیده؛ چون معتقدم ساده‌سازی مسیر، کلید موفقیته.</p>
+                <p>هدف من اینه که شما رو تبدیل کنم به یه تریدر مستقل، کسی که بازار رو می‌فهمه و بر اساس تحلیل خودش تصمیم می‌گیره — نه بر اساس سیگنال دیگران.</p>
+                <p>اگر دنبال آموزش واقعی، مسیر درست و رشد مستمر در دنیای فارکس هستی، اینجا درست اومدی.</p>
+            </div>
+        </section>
+
+        <!-- سوالات متداول -->
+        <section id="faq-section" class="content-section">
+            <h2><i class="fas fa-question-circle"></i> سوالات متداول (FAQ)</h2>
+            <div class="faq-content">
+                <div class="faq-item">
+                    <h3>۱. آیا این دوره برای مبتدی‌ها مناسب است؟</h3>
+                    <p>بله. دوره رایگان مخصوص افرادی طراحی شده که هیچ آشنایی قبلی با بازار فارکس ندارند.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>۲. دوره‌ها چه فرقی با آموزش‌های یوتیوب و اینستاگرام دارند؟</h3>
+                    <p>این دوره‌ها ساختاریافته، گام‌به‌گام، پروژه‌محور و با تمرین و پشتیبانی طراحی شده‌اند. محتوای رایگان شبکه‌های اجتماعی به هیچ‌وجه عمق لازم برای سودآوری واقعی را ندارد.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>۳. آیا پس از اتمام دوره امکان دریافت مشاوره یا منتورینگ هست؟</h3>
+                    <p>بله. هنرجویان دوره تخصصی می‌توانند در جلسات کوچینگ اختصاصی شرکت کنند.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>۴. آیا به نرم‌افزار یا ابزار خاصی نیاز دارم؟</h3>
+                    <p>خیر، تنها نیاز شما اینترنت، موبایل یا کامپیوتر و انگیزه برای یادگیری و تمرین مستمر است.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>۵. آیا گواهی پایان دوره ارائه می‌شود؟</h3>
+                    <p>در حال حاضر گواهی رسمی ارائه نمی‌شود، اما تمرکز اصلی بر روی مهارت واقعی و تسلط عملی بر بازار است.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- نظرات هنرجویان -->
+        <section id="testimonials-section" class="content-section">
+            <h2><i class="fas fa-comment-dots"></i> نظرات هنرجویان</h2>
+            <div class="testimonials-content">
+                <div class="testimonial">
+                    <h3>فرزانه.ک – تهران</h3>
+                    <p>«من چند دوره مختلف شرکت کرده بودم اما همیشه سردرگم بودم. دوره‌های مهناز خورسند به‌قدری منظم و شفاف بود که برای اولین بار واقعاً مفهوم روند، کندل و تحلیل را درک کردم.»</p>
+                </div>
+                <div class="testimonial">
+                    <h3>سامان.ن – شیراز</h3>
+                    <p>«پشتیبانی و پیگیری واقعی‌ترین تفاوت این آموزش با بقیه بود. با اینکه از صفر شروع کرده بودم، الان با خیال راحت ترید می‌کنم و مدیریت سرمایه‌ام دست خودمه.»</p>
+                </div>
+                <div class="testimonial">
+                    <h3>سحر.م – مشهد</h3>
+                    <p>«تجربه من از یادگیری با این دوره‌ها عالی بود. سادگی بیان، تسلط مدرس و آموزش قدم‌به‌قدم باعث شد بالاخره به سود مستمر برسم.»</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- تماس با ما -->
+        <section id="contact-section" class="content-section">
+            <h2><i class="fas fa-phone-alt"></i> تماس با ما</h2>
+            <div class="contact-content">
+                <p>در صورت تمایل به مشاوره، ثبت‌نام در دوره‌ها، یا دریافت راهنمایی بیشتر، می‌توانید از طریق راه‌های ارتباطی زیر با ما در تماس باشید:</p>
+                <div class="contact-methods">
+                    <p><i class="fas fa-envelope"></i> ایمیل: info@example.com</p>
+                    <p><i class="fas fa-phone"></i> واتساپ / تلگرام: ۰۹۱۲XXX۱۲۳۴</p>
+                    <p><i class="fab fa-instagram"></i> اینستاگرام: @forex_with_mahnaz</p>
+                </div>
+            </div>
+        </section>
     </div>
-  </div>
 
-  <div class="socials">
-    <a href="https://instagram.com" target="_blank" title="اینستاگرام"><i class="fab fa-instagram"></i></a>
-    <a href="https://telegram.org" target="_blank" title="تلگرام"><i class="fab fa-telegram"></i></a>
-    <a href="https://twitter.com" target="_blank" title="توییتر"><i class="fab fa-twitter"></i></a>
-    <a href="https://linkedin.com" target="_blank" title="لینکدین"><i class="fab fa-linkedin"></i></a>
-  </div>
+    <!-- چت آنلاین -->
+    <div class="chat-box" id="chatBox">
+        <div class="chat-header">
+            <span>چت آنلاین</span>
+            <i class="fas fa-times close-chat" id="closeChat"></i>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- پیام‌ها اینجا نمایش داده می‌شوند -->
+        </div>
+        <div class="quick-questions">
+            <p>چطور می‌توانم کمک‌تان کنم؟</p>
+            <button class="quick-question">به پشتیبانی پیام دهید</button>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="پیام شما..." id="chatInput">
+            <button class="send-btn" id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <div class="chat-icon" id="chatIcon">
+        <i class="fas fa-comment-dots"></i>
+    </div>
 
-  <div class="bio" id="bio-text">
-    Miss_Trader با سال‌ها تجربه در بازارهای مالی و فارکس، همواره هدفش آموزش حرفه‌ای و واقعی به تریدرها بوده است. او با استفاده از جدیدترین متدهای تحلیل تکنیکال و روانشناسی بازار، به شما کمک می‌کند تا مسیر موفقیت در معاملات را به سرعت طی کنید.  
-    دوره‌ها و تحلیل‌های او ترکیبی از علم و تجربه است که تریدرهای حرفه‌ای به دنبال آن هستند.
-  </div>
-</section>
+    <script>
+        // مدیریت تغییر زبان
+        const langSwitcher = document.getElementById('langSwitcher');
+        const langText = document.querySelector('.lang-text');
+        let currentLang = 'fa';
+        
+        // متون دو زبانه
+        const translations = {
+            'fa': {
+                'registerBtn': 'ثبت نام',
+                'registerTitle': 'فرم ثبت نام در دوره‌ها',
+                'namePlaceholder': 'نام و نام خانوادگی',
+                'phonePlaceholder': 'شماره تماس',
+                'levelLabel': 'سطح آشنایی با فارکس',
+                'beginner': 'مبتدی',
+                'intermediate': 'آشنا',
+                'semi-pro': 'نیمه حرفه‌ای',
+                'courseLabel': 'دوره مورد نظر',
+                'freeCourse': 'دوره رایگان',
+                'proCourse': 'دوره تخصصی',
+                'questionPlaceholder': 'سوال شما (اختیاری)',
+                'submitBtn': 'ارسال اطلاعات',
+                'successMessage': 'ثبت نام شما با موفقیت انجام شد. همکاران ما تا ۲۴ ساعت آینده با شما تماس خواهند گرفت.',
+                'services': 'خدمات آموزشی',
+                'about': 'درباره ما',
+                'faq': 'سوالات متداول',
+                'testimonials': 'نظرات هنرجویان',
+                'contact': 'تماس با ما',
+                'chatTitle': 'چت آنلاین',
+                'faqQuestions': 'چطور می‌توانم کمک‌تان کنم؟',
+                'helpQuestion': 'به پشتیبانی پیام دهید',
+                'messagePlaceholder': 'پیام شما...',
+                'motivationText': 'در دنیای پر از نوسان و فرصت‌های بی‌پایان بازارهای مالی، موفقیت تنها از آن کسانی است که جرئت می‌کنند قدم اول را بردارند، پشتکار دارند و همواره در مسیر یادگیری و رشد هستند. ترید کردن، هنر تحلیل و تصمیم‌گیری در لحظه‌های حساس است که می‌تواند زندگی شما را متحول کند.\n\nما در کنار تحلیل تکنیکال و فاندامنتال، از قدرت استرولوژی مالی نیز بهره می‌بریم؛ دانشی که با بررسی موقعیت سیارات و تأثیرات آن‌ها بر احساسات جمعی بازار، به ما دیدگاهی عمیق‌تر و زمان‌بندی دقیق‌تری برای ورود و خروج می‌دهد. این ترکیب هوشمندانه از علم و هنر، می‌تواند شما را چند قدم جلوتر از بازار نگه دارد.\n\nامروز زمان آن است که ترس‌ها را کنار بگذارید و به سمت آینده‌ای روشن‌تر حرکت کنید.\nبا ما، آموزش ترید اسکلپی و روندی را به‌همراه نگاهی متفاوت از جنس کیهان تجربه می‌کنید.',
+                'aboutText': 'من مهناز خورسند هستم، متولد ۱۳۶۷، دارای مدرک فوق‌لیسانس مهندسی تکنولوژی معماری و با سابقه‌ای چندساله در مسیر پرچالش اما جذاب بازارهای مالی.\n\nاز سال ۱۳۹۸ با دنیای ترید آشنا شدم. مثل خیلی‌ها، مسیرم پر از سردرگمی، ضرر، تلاش و یادگیری بود. اما هیچ‌وقت متوقف نشدم. حالا، بعد از سال‌ها تجربه، آزمون و خطا، و یادگیری مداوم، خوشحالم که می‌تونم بگم بیش از سه ساله به سود مستمر در بازار فارکس رسیدم.\n\nاینجا رو راه‌اندازی کردم تا آموزش‌هایی ارائه بدم که صرفاً تئوری نباشن، بلکه بر پایه تجربه واقعی و قابل استفاده در معاملات واقعی باشن. آموزش‌هایی ساده، کاربردی و بدون وابستگی به اندیکاتورها و روش‌های پیچیده؛ چون معتقدم ساده‌سازی مسیر، کلید موفقیته.\n\nهدف من اینه که شما رو تبدیل کنم به یه تریدر مستقل، کسی که بازار رو می‌فهمه و بر اساس تحلیل خودش تصمیم می‌گیره — نه بر اساس سیگنال دیگران.\n\nاگر دنبال آموزش واقعی، مسیر درست و رشد مستمر در دنیای فارکس هستی، اینجا درست اومدی.'
+            },
+            'en': {
+                'registerBtn': 'Register',
+                'registerTitle': 'Course Registration Form',
+                'namePlaceholder': 'Full Name',
+                'phonePlaceholder': 'Phone Number',
+                'levelLabel': 'Current Forex Knowledge Level',
+                'beginner': 'Beginner',
+                'intermediate': 'Intermediate',
+                'semi-pro': 'Semi-Professional',
+                'courseLabel': 'Desired Course',
+                'freeCourse': 'Free Course',
+                'proCourse': 'Professional Course',
+                'questionPlaceholder': 'Your question (optional)',
+                'submitBtn': 'Submit',
+                'successMessage': 'Your registration was successful. Our team will contact you within 24 hours.',
+                'services': 'Educational Services',
+                'about': 'About Us',
+                'faq': 'FAQ',
+                'testimonials': 'Testimonials',
+                'contact': 'Contact Us',
+                'chatTitle': 'Online Chat',
+                'faqQuestions': 'How can I help you?',
+                'helpQuestion': 'Message support',
+                'messagePlaceholder': 'Your message...',
+                'motivationText': 'In the world of volatile and endless opportunities in financial markets, success belongs only to those who dare to take the first step, have perseverance and are always on the path of learning and growth. Trading is the art of analysis and decision-making in critical moments that can transform your life.\n\nAlong with technical and fundamental analysis, we also use the power of financial astrology; a knowledge that by examining the position of planets and their effects on the collective emotions of the market, gives us a deeper perspective and more precise timing for entry and exit. This smart combination of science and art can keep you several steps ahead of the market.\n\nToday is the time to put aside your fears and move towards a brighter future.\nWith us, experience scalp and trend trading along with a unique cosmic perspective.',
+                'aboutText': 'I am Mahnaz Khorsand, born in 1988, with a Master\'s degree in Architectural Engineering Technology and several years of experience in the challenging yet fascinating path of financial markets.\n\nSince 2019, I became familiar with trading. Like many others, my path was full of confusion, loss, effort and learning. But I never stopped. Now, after years of experience, trial and error, and continuous learning, I\'m happy to say that I\'ve been consistently profitable in the Forex market for over three years.\n\nI established this platform to provide training that is not merely theoretical, but based on real experience and applicable in real trading. Simple, practical training without dependency on complex indicators and methods; because I believe simplifying the path is the key to success.\n\nMy goal is to transform you into an independent trader, someone who understands the market and makes decisions based on their own analysis - not based on others\' signals.\n\nIf you\'re looking for real education, the right path and continuous growth in the world of Forex, you\'ve come to the right place.'
+            }
+        };
+        
+        langSwitcher.addEventListener('click', function() {
+            if (currentLang === 'fa') {
+                currentLang = 'en';
+                langText.textContent = 'فارسی';
+                document.documentElement.lang = 'en';
+                document.documentElement.dir = 'ltr';
+                translatePage('en');
+            } else {
+                currentLang = 'fa';
+                langText.textContent = 'English';
+                document.documentElement.lang = 'fa';
+                document.documentElement.dir = 'rtl';
+                translatePage('fa');
+            }
+        });
+        
+        function translatePage(lang) {
+            // ترجمه عناصر صفحه
+            document.getElementById('registerBtn').innerHTML = `<i class="fas fa-user-plus"></i> ${translations[lang]['registerBtn']}`;
+            document.querySelector('.register-form h3').textContent = translations[lang]['registerTitle'];
+            document.querySelector('.register-form input[type="text"]').placeholder = translations[lang]['namePlaceholder'];
+            document.querySelector('.register-form input[type="tel"]').placeholder = translations[lang]['phonePlaceholder'];
+            document.querySelector('.register-form select:first-of-type option:first-of-type').textContent = translations[lang]['levelLabel'];
+            document.querySelector('.register-form select:first-of-type option:nth-of-type(2)').textContent = translations[lang]['beginner'];
+            document.querySelector('.register-form select:first-of-type option:nth-of-type(3)').textContent = translations[lang]['intermediate'];
+            document.querySelector('.register-form select:first-of-type option:nth-of-type(4)').textContent = translations[lang]['semi-pro'];
+            document.querySelector('.register-form select:last-of-type option:first-of-type').textContent = translations[lang]['courseLabel'];
+            document.querySelector('.register-form select:last-of-type option:nth-of-type(2)').textContent = translations[lang]['freeCourse'];
+            document.querySelector('.register-form select:last-of-type option:nth-of-type(3)').textContent = translations[lang]['proCourse'];
+            document.querySelector('.optional-question input').placeholder = translations[lang]['questionPlaceholder'];
+            document.querySelector('.register-form button').innerHTML = `<i class="fas fa-paper-plane"></i> ${translations[lang]['submitBtn']}`;
+            document.getElementById('successMessage').innerHTML = `<i class="fas fa-check-circle"></i> ${translations[lang]['successMessage']}`;
+            
+            // ترجمه منو
+            document.getElementById('services-link').innerHTML = `<i class="fas fa-graduation-cap menu-icon"></i> ${translations[lang]['services']}`;
+            document.getElementById('about-link').innerHTML = `<i class="fas fa-user-tie menu-icon"></i> ${translations[lang]['about']}`;
+            document.getElementById('faq-link').innerHTML = `<i class="fas fa-question-circle menu-icon"></i> ${translations[lang]['faq']}`;
+            document.getElementById('testimonials-link').innerHTML = `<i class="fas fa-comment-dots menu-icon"></i> ${translations[lang]['testimonials']}`;
+            document.getElementById('contact-link').innerHTML = `<i class="fas fa-phone-alt menu-icon"></i> ${translations[lang]['contact']}`;
+            
+            // ترجمه چت
+            document.querySelector('.chat-header span').textContent = translations[lang]['chatTitle'];
+            document.querySelector('.quick-questions p').textContent = translations[lang]['faqQuestions'];
+            document.querySelectorAll('.quick-question')[0].textContent = translations[lang]['helpQuestion'];
+            document.getElementById('chatInput').placeholder = translations[lang]['messagePlaceholder'];
+            
+            // ترجمه تیتر بخش‌ها
+            document.querySelector('#about-section h2').innerHTML = `<i class="fas fa-user-tie"></i> ${translations[lang]['about']}`;
+            document.querySelector('#faq-section h2').innerHTML = `<i class="fas fa-question-circle"></i> ${translations[lang]['faq']}`;
+            document.querySelector('#testimonials-section h2').innerHTML = `<i class="fas fa-comment-dots"></i> ${translations[lang]['testimonials']}`;
+            document.querySelector('#contact-section h2').innerHTML = `<i class="fas fa-phone-alt"></i> ${translations[lang]['contact']}`;
+            
+            // ترجمه متن انگیزشی
+            document.querySelector('.motivation-text').textContent = translations[lang]['motivationText'];
+            
+            // ترجمه متن درباره ما
+            document.querySelector('.about-content').innerHTML = translations[lang]['aboutText'].split('\n\n').map(paragraph => `<p>${paragraph}</p>`).join('');
+        }
 
-<script>
-  const langToggle = document.getElementById('lang-toggle');
-  let currentLang = 'fa';
+        // مدیریت فرم ثبت نام
+        const registerBtn = document.getElementById('registerBtn');
+        const registerFormContainer = document.getElementById('registerFormContainer');
+        const closeForm = document.getElementById('closeForm');
+        const registrationForm = document.getElementById('registrationForm');
+        const successMessage = document.getElementById('successMessage');
+        
+        registerBtn.addEventListener('click', function() {
+            registerFormContainer.classList.add('active');
+        });
+        
+        closeForm.addEventListener('click', function() {
+            registerFormContainer.classList.remove('active');
+        });
+        
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            registrationForm.style.display = 'none';
+            successMessage.style.display = 'block';
+            
+            // در اینجا می‌توانید اطلاعات را به سرور ارسال کنید
+            setTimeout(() => {
+                registerFormContainer.classList.remove('active');
+                registrationForm.style.display = 'block';
+                successMessage.style.display = 'none';
+                registrationForm.reset();
+            }, 3000);
+        });
 
-  const translations = {
-    en: {
-      direction: 'ltr',
-      langBtn: 'فارسی',
-      menu: {
-        home: 'Home',
-        freeCourses: 'Free Courses',
-        paidCourses: 'Our Trainings',
-        weeklyAnalysis: 'Weekly Analysis',
-        blog: 'Blog',
-        about: 'About Us'
-      },
-      title: 'Empowering your trading journey',
-      subtitle: 'Founder of M&W Concept',
-      servicesTitle: 'Our Services',
-      service1Title: 'Free Courses',
-      service1Desc: 'Comprehensive Forex trading video tutorials',
-      service2Title: 'Weekly Analysis',
-      service2Desc: 'Accurate and professional market and candlestick analysis',
-      service3Title: 'Our Trainings',
-      service3Desc: 'Advanced specialized courses with support and exclusive files',
-      bio: `Miss_Trader, with years of experience in financial markets and Forex, aims to provide professional and genuine education to traders. Using the latest methods of technical analysis and market psychology, she helps you quickly achieve success in trading.  
-      Her courses and analyses combine knowledge and experience sought by professional traders.`
-    },
-    fa: {
-      direction: 'rtl',
-      langBtn: 'English',
-      menu: {
-        home: 'خانه',
-        freeCourses: 'آموزش رایگان',
-        paidCourses: 'آموزش‌های ما',
-        weeklyAnalysis: 'تحلیل هفتگی',
-        blog: 'وبلاگ',
-        about: 'درباره ما'
-      },
-      title: 'توانمندسازی مسیر ترید شما',
-      subtitle: 'بنیانگذار M&W Concept',
-      servicesTitle: 'خدمات ما',
-      service1Title: 'دوره‌های رایگان',
-      service1Desc: 'آموزش ترید در فارکس با ویدئوهای کامل و جامع',
-      service2Title: 'تحلیل هفتگی',
-      service2Desc: 'تحلیل بازار و کندل‌ها به صورت دقیق و حرفه‌ای',
-      service3Title: 'آموزش‌های ما',
-      service3Desc: 'دوره‌های تخصصی پیشرفته با پشتیبانی و فایل‌های اختصاصی',
-      bio: `Miss_Trader با سال‌ها تجربه در بازارهای مالی و فارکس، همواره هدفش آموزش حرفه‌ای و واقعی به تریدرها بوده است. او با استفاده از جدیدترین متدهای تحلیل تکنیکال و روانشناسی بازار، به شما کمک می‌کند تا مسیر موفقیت در معاملات را به سرعت طی کنید.  
-      دوره‌ها و تحلیل‌های او ترکیبی از علم و تجربه است که تریدرهای حرفه‌ای به دنبال آن هستند.`
-    }
-  };
+        // مدیریت منو
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuBackBtn = document.getElementById('menuBackBtn');
+        const menuLinks = {
+            'about-link': 'about-section',
+            'faq-link': 'faq-section',
+            'testimonials-link': 'testimonials-section',
+            'contact-link': 'contact-section'
+        };
+        
+        Object.keys(menuLinks).forEach(linkId => {
+            document.getElementById(linkId).addEventListener('click', function(e) {
+                if (linkId !== 'services-link') {
+                    e.preventDefault();
+                }
+                
+                // مخفی کردن تمام بخش‌ها
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // نمایش بخش مورد نظر
+                if (linkId !== 'services-link') {
+                    document.getElementById(menuLinks[linkId]).classList.add('active');
+                }
+                
+                // مخفی کردن صفحه اول
+                document.getElementById('heroSection').style.display = 'none';
+                
+                // بستن منو
+                menuToggle.checked = false;
+                
+                // نمایش دکمه برگشت در حالت موبایل
+                if (window.innerWidth <= 768) {
+                    menuBackBtn.style.display = 'block';
+                }
+            });
+        });
+        
+        menuBackBtn.addEventListener('click', function() {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('heroSection').style.display = 'flex';
+            this.style.display = 'none';
+        });
 
-  function updateLanguage(lang) {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = translations[lang].direction;
-    document.body.style.direction = translations[lang].direction;
+        // مدیریت چت آنلاین
+        const chatIcon = document.getElementById('chatIcon');
+        const chatBox = document.getElementById('chatBox');
+        const closeChat = document.getElementById('closeChat');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const quickQuestions = document.querySelectorAll('.quick-question');
+        
+        chatIcon.addEventListener('click', function() {
+            chatBox.classList.toggle('active');
+        });
+        
+        closeChat.addEventListener('click', function() {
+            chatBox.classList.remove('active');
+        });
+        
+        quickQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const questionText = this.textContent;
+                addMessage(questionText, 'user');
+                
+                // پاسخ خودکار
+                setTimeout(() => {
+                    const lang = document.documentElement.lang;
+                    const response = lang === 'fa' ? 
+                        'لطفاً از طریق بخش پشتیبانی با ما در ارتباط باشید.' : 
+                        'Please contact our support team.';
+                    
+                    addMessage(response, 'bot');
+                }, 1000);
+            });
+        });
+        
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendMessage();
+        });
+        
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, 'user');
+                chatInput.value = '';
+                
+                // پاسخ خودکار به پیام‌های کاربر
+                setTimeout(() => {
+                    const lang = document.documentElement.lang;
+                    const response = lang === 'fa' ? 
+                        'برای دریافت پاسخ دقیق‌تر، لطفاً از طریق بخش پشتیبانی با ما تماس بگیرید.' : 
+                        'For more accurate answers, please contact our support team.';
+                    
+                    addMessage(response, 'bot');
+                }, 1500);
+            }
+        }
+        
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender);
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
 
-    langToggle.textContent = translations[lang].langBtn;
-
-    // منو
-    document.querySelectorAll('.menu a').forEach(a => {
-      const key = a.getAttribute('data-key');
-      if (translations[lang].menu[key]) {
-        a.textContent = translations[lang].menu[key];
-      }
-    });
-
-    // عناوین و متن‌ها
-    document.getElementById('title').textContent = translations[lang].title;
-    document.getElementById('subtitle').textContent = translations[lang].subtitle;
-    document.getElementById('services-title').textContent = translations[lang].servicesTitle;
-
-    document.getElementById('service1-title').textContent = translations[lang].service1Title;
-    document.getElementById('service1-desc').textContent = translations[lang].service1Desc;
-
-    document.getElementById('service2-title').textContent = translations[lang].service2Title;
-    document.getElementById('service2-desc').textContent = translations[lang].service2Desc;
-
-    document.getElementById('service3-title').textContent = translations[lang].service3Title;
-    document.getElementById('service3-desc').textContent = translations[lang].service3Desc;
-
-    document.getElementById('bio-text').textContent = translations[lang].bio;
-
-    currentLang = lang;
-  }
-
-  langToggle.addEventListener('click', () => {
-    updateLanguage(currentLang === 'fa' ? 'en' : 'fa');
-  });
-
-  // مقدار اولیه زبان فارسی
-  updateLanguage('fa');
-</script>
-
+        // نمایش صفحه اول به صورت پیش‌فرض
+        document.getElementById('about-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('about-section').classList.add('active');
+            document.getElementById('heroSection').style.display = 'none';
+        });
+    </script>
 </body>
 </html>
